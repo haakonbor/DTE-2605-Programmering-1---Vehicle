@@ -17,6 +17,13 @@ public class Car extends Vehicle {
         productionDate = new GregorianCalendar();
     }
 
+    @Override
+    public Object clone() {
+        Car carClone = (Car) super.clone();
+        carClone.productionDate = (Calendar)productionDate.clone();
+        return carClone;
+    }
+
     public int getPower() {
         return power;
     }

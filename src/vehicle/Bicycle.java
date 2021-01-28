@@ -17,6 +17,13 @@ public class Bicycle extends Vehicle {
         productionDate = new GregorianCalendar();
     }
 
+    @Override
+    public Object clone() {
+        Bicycle bicycleClone = (Bicycle) super.clone();
+        bicycleClone.productionDate = (Calendar)productionDate.clone();
+        return bicycleClone;
+    }
+
     public int getGears() {
         return gears;
     }
