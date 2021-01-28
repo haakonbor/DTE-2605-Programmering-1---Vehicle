@@ -3,7 +3,7 @@ package vehicle;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public abstract class Vehicle implements Comparable<Vehicle>, Cloneable {
+public abstract class Vehicle implements Comparable<Vehicle>, Cloneable, Driveable {
     private String colour, name, serialNumber;
     private int model, price, direction = 0;
     private double speed = 0;
@@ -133,5 +133,11 @@ public abstract class Vehicle implements Comparable<Vehicle>, Cloneable {
         return "Name: " + name + "\nColour: " + colour + "\nSerialNumber: " + serialNumber + "\nModel: " + model +
                 "\nPrice: " + price + "\nDirection: " + direction +
                 "\nSpeed: " + speed + "\nBuying date: " + buyingDate.getTime();
+    }
+
+     @Override
+     public void stop() {
+        this.speed = 0;
+        System.out.println("Vehicle stops");
     }
 }

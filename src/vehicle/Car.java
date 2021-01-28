@@ -70,4 +70,30 @@ public class Car extends Vehicle {
     public String toString() {
         return super.toString() + "\nPower: " + power + "\nProduction date: " + productionDate.getTime() + "\n";
     }
+
+    @Override
+    public void accelerate(int speedFactor) {
+        double currentSpeed = getSpeed();
+        double newSpeed;
+
+        // Bilen står i ro
+        if (currentSpeed == 0)
+            newSpeed = 0.5 * speedFactor;
+
+        // Bilen er i bevegelse
+        else
+            newSpeed = currentSpeed * speedFactor;
+
+        // Velger den minste av den nye farten og max fart en bil kan ha
+        setSpeed(Math.min(newSpeed, MAX_SPEED_CAR));
+
+        System.out.println("Vehicle accelerated to: " + getSpeed() + " km/h");
+    }
+
+    @Override
+    public void breaks(int speedFactor) {
+        setSpeed(getSpeed() / (speedFactor * 0.5));
+
+        System.out.println("Vehicle slowed down to: " + getSpeed() + " km/h");
+    }
 }

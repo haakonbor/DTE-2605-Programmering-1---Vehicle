@@ -61,4 +61,30 @@ public class Bicycle extends Vehicle {
     public String toString() {
         return super.toString() + "\nGears: " + gears + "\nProduction date: " + productionDate.getTime() + "\n";
     }
+
+    @Override
+    public void accelerate(int speedFactor) {
+        double currentSpeed = getSpeed();
+        double newSpeed;
+
+        // Sykkelen står i ro
+        if (currentSpeed == 0)
+            newSpeed = 0.3 * speedFactor;
+
+        // Sykkelen er i bevegelse
+        else
+            newSpeed = currentSpeed * 0.5 * speedFactor;
+
+        // Velger den minste av den nye farten og max fart en sykkel kan ha
+        setSpeed(Math.min(newSpeed, MAX_SPEED_BIKE));
+
+        System.out.println("Vehicle accelerated to: " + getSpeed() + " km/h");
+    }
+
+    @Override
+    public void breaks(int speedFactor) {
+        setSpeed(getSpeed() / (speedFactor * 0.5));
+
+        System.out.println("Vehicle slowed down to: " + getSpeed() + " km/h");
+    }
 }
