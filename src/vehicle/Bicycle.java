@@ -36,7 +36,7 @@ public class Bicycle extends Vehicle {
         return productionDate;
     }
 
-    public void setProductionDate (Calendar productionDate) {
+    public void setProductionDate(Calendar productionDate) {
         this.productionDate = productionDate;
     }
 
