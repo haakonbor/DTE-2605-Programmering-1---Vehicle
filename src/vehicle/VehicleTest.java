@@ -54,13 +54,64 @@ public class VehicleTest {
         arr.add(bicycle);
         break;
       case 3:
-        //vis info om gitt kjøretøy
+        System.out.println("Name of vehicle: ");
+        scan.nextLine();
+        String name = scan.nextLine();
+        boolean found = false;
+
+        for (Vehicle i : arr) {
+          if (i.getName().equals(name)) {
+            System.out.println(i);
+            found = true;
+            break;
+          }
+        }
+
+        if (!found)
+          System.out.println("Vehicle \"" + name + "\" not found.");
+
         break;
       case 4:
-        //vis info om alle kjøretøy
+        for (Vehicle i : arr) {
+          System.out.println(i);
+        }
         break;
       case 5:
-        // Finn kjøretøy med gitt navn, sett ny retning
+        System.out.println("Name of vehicle: ");
+        scan.nextLine();
+        name = scan.nextLine();
+        found = false;
+
+        for (Vehicle i : arr) {
+          if (i.getName().equals(name)) {
+            found = true;
+
+            System.out.println("Direction [R/L]: ");
+            String direction = scan.nextLine();
+
+            if (!(direction.equals("L") || direction.equals("R"))) {
+              System.out.println("Invalid direction.");
+              break;
+            }
+
+            System.out.println("Degrees [0 - 360]: ");
+            int degrees = scan.nextInt();
+
+            if (direction.equals("L"))
+              i.turnLeft(degrees);
+
+            else
+              i.turnRight(degrees);
+
+            break;
+          }
+        }
+
+        if (!found) {
+          System.out.println("Vehicle \"" + name + "\" not found.");
+          break;
+        }
+
         break;
       case 6:
       	scan.close();

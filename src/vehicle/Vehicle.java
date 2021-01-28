@@ -87,11 +87,11 @@ public abstract class Vehicle {
         System.out.println("Model: ");
         this.model = input.nextInt();
 
+        // Må bruke denne input-metoden, ellers vil den hoppe over inputen av serialNumber
+        input.nextLine();
+
         System.out.println("Serial #: ");
         this.serialNumber = input.nextLine();
-
-        // Må bruke denne input-metoden, ellers vil den hoppe over inputen av serialNumber
-        input.next();
     }
 
     public abstract void turnLeft(int degrees);
@@ -99,7 +99,7 @@ public abstract class Vehicle {
     public abstract void turnRight(int degrees);
 
     public String toString() {
-        return "Colour: " + colour + "\n Name: " + name + "\n SerialNumber: " + serialNumber + "\n Model: " + model +
-                "\n Price: " + price + "\n Direction: " + direction + "\n Speed: " + speed;
+        return "Name: " + name + "\nColour: " + colour + "\nSerialNumber: " + serialNumber + "\nModel: " + model +
+                "\nPrice: " + price + "\nDirection: " + direction + "\nSpeed: " + speed;
     }
 }

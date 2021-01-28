@@ -1,14 +1,20 @@
 package vehicle;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 public class Bicycle extends Vehicle {
     private int gears;
+    private final Calendar productionDate;
 
     public Bicycle() {
+        productionDate = new GregorianCalendar();
     }
 
-    public Bicycle(String name, String colour, int price, int model, String serialNumber, int direction, int gears) {
+    public Bicycle(String name, String colour, int price, int model, String serialNumber, int gears, int direction) {
         super(colour, name, serialNumber, model, price, direction);
         this.gears = gears;
+        productionDate = new GregorianCalendar();
     }
 
     public int getGears() {
@@ -38,6 +44,6 @@ public class Bicycle extends Vehicle {
 
     @Override
     public String toString() {
-        return super.toString() + "\n Gears: " + gears;
+        return super.toString() + "\nGears: " + gears + "\nProduction date: " + productionDate.getTime() + "\n";
     }
 }

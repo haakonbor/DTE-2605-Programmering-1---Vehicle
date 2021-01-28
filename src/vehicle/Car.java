@@ -1,14 +1,20 @@
 package vehicle;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 public class Car extends Vehicle {
     private int power;
+    private final Calendar productionDate;
 
     public Car() {
+        productionDate = new GregorianCalendar();
     }
 
-    public Car(String name, String colour, int price, int model, String serialNumber, int direction, int power) {
+    public Car(String name, String colour, int price, int model, String serialNumber, int power, int direction) {
         super(colour, name, serialNumber, model, price, direction);
         this.power = power;
+        productionDate = new GregorianCalendar();
     }
 
     public int getPower() {
@@ -31,6 +37,8 @@ public class Car extends Vehicle {
     public void turnLeft(int degrees) {
         if (degrees < 360 && degrees >= 0) {
             int newDirection = (getDirection() - degrees) % 360;
+            if (newDirection < 0)
+                newDirection = 360 + newDirection;
             setDirection(newDirection);
         }
     }
@@ -45,6 +53,6 @@ public class Car extends Vehicle {
 
     @Override
     public String toString() {
-        return super.toString() + "\n Power: " + power;
+        return super.toString() + "\nPower: " + power + "\nProduction date: " + productionDate.getTime() + "\n";
     }
 }
