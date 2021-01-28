@@ -1,12 +1,17 @@
 package vehicle;
 
-public abstract class Vehicle {
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+public abstract class Vehicle implements Comparable<Vehicle>, Cloneable {
     private String colour, name, serialNumber;
     private int model, price, direction = 0;
     private double speed = 0;
+    private Calendar buyingDate;
     protected java.util.Scanner input = new java.util.Scanner(System.in);
 
     protected Vehicle() {
+        this.buyingDate = new GregorianCalendar();
     }
 
     protected Vehicle(String colour, String name, String serialNumber, int model, int price, int direction) {
@@ -16,6 +21,24 @@ public abstract class Vehicle {
         this.model = model;
         this.price = price;
         this.direction = direction;
+        this.buyingDate = new GregorianCalendar();
+    }
+
+    @Override
+    public int compareTo(Vehicle o) {
+        return Integer.compare(getPrice(), o.getPrice());
+    }
+
+    @Override
+    public Object clone() {
+        try {
+            Vehicle vehicleClone = (Vehicle)super.clone();
+            vehicleClone.buyingDate = (Calendar)buyingDate.clone();
+            return vehicleClone;
+        }
+        catch (CloneNotSupportedException ex) {
+            return null;
+        }
     }
 
     public String getColour() {
@@ -72,6 +95,14 @@ public abstract class Vehicle {
 
     public void setSpeed(double speed) {
         this.speed = speed;
+    }
+
+    public String getBuyingDate() {
+        return buyingDate.getTime().toString();
+    }
+
+    public void setBuyingDate(Calendar buyingDate) {
+        this.buyingDate = buyingDate;
     }
 
     public void setAllFields() {

@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
 
 public class Bicycle extends Vehicle {
     private int gears;
-    private final Calendar productionDate;
+    private Calendar productionDate;
 
     public Bicycle() {
         productionDate = new GregorianCalendar();
@@ -17,12 +17,27 @@ public class Bicycle extends Vehicle {
         productionDate = new GregorianCalendar();
     }
 
+    @Override
+    public Object clone() {
+        Bicycle bicycleClone = (Bicycle) super.clone();
+        bicycleClone.productionDate = (Calendar)productionDate.clone();
+        return bicycleClone;
+    }
+
     public int getGears() {
         return gears;
     }
 
     public void setGears(int gears) {
         this.gears = gears;
+    }
+
+    public Calendar getProductionDate () {
+        return productionDate;
+    }
+
+    public void setProductionDate (Calendar productionDate) {
+        this.productionDate = productionDate;
     }
 
     @Override
